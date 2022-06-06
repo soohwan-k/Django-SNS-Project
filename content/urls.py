@@ -16,9 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 #from content.views import Main
+from content import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    #path('', Main.as_view())
-    path('', include('content.urls')),
+    path('', views.FeedList.as_view()),
 ]
