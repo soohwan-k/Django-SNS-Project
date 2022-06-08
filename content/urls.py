@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-#from content.views import Main
+
+from django.urls import path
+
 from content import views
 
 urlpatterns = [
     path('', views.FeedList.as_view()),
+    path('create_feed/', views.FeedCreate.as_view()),
 ]

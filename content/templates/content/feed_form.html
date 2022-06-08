@@ -1,0 +1,23 @@
+{% extends 'content/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Create Feed</title>
+{% endblock %}
+
+{% block main_area %}
+</head>
+<body>
+ <h1>Create New Feed</h1>
+    <hr/>
+
+    <form method="post" enctype ="multipart/form-data">{% csrf_token %}
+        <table>
+            {{ form|crispy }}
+        </table>
+        <div style="margin-top: 10px"></div>
+        <button type="submit" class="btn btn-outline-dark">공유하기</button>
+    </form>
+    {{ form.media }}
+</body>
+</html>
+{% endblock %}
