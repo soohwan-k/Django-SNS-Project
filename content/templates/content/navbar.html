@@ -7,14 +7,28 @@
     <a class="navbar-brand" href="#">SNS</a>
 
 
-        <input class="form-control me-2" style="width: 400px" type="search" placeholder="Search" aria-label="Search">
-      <div>
-        <span class="material-symbols-outlined">home</span>
-        <span class="material-symbols-outlined">mail</span>
-        <a class="btn btn-outline-dark.btn-outline-white" href="/main/create_feed/" role="button" style="border-radius: 50%;"><span id="nav_bar_add_circle" class="material-symbols-outlined" href="/create_feed/">add_circle</span></a>
+      <input class="form-control me-2" style="width: 400px;" type="search" placeholder="Search" aria-label="Search">
+      <div style="display: flex;">
 
-        <span class="material-symbols-outlined">explore</span>
-        <span class="material-symbols-outlined">favorite</span>
+
+
+          <a class="btn btn-outline-dark.btn-outline-white" href="/main/" role="button" style="border-radius: 50%;"><span id="home_circle" class="material-symbols-outlined" href="#">home</span></a>
+
+          <a class="btn btn-outline-dark.btn-outline-white" href="/main/create_feed/" role="button" style="border-radius: 50%;"><span id="nav_bar_add_circle" class="material-symbols-outlined" href="/create_feed/">add_circle</span></a>
+
+          <div class="dropdown";>
+              <a class="btn btn-outline-dark.btn-outline-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span id="profile_circle2" class="material-symbols-outlined">account_circle</span>
+              </a>
+
+              <ul class="dropdown-menu" style="left: -130px" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="profile/">프로필</a></li>
+                  <li><a class="dropdown-item" href="">Another action</a></li>
+
+              </ul>
+          </div>
+
+
       </div>
     </div>
 </nav>

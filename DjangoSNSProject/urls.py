@@ -23,7 +23,7 @@ from DjangoSNSProject import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', include('content.urls')),
-    # path('', include('user.urls')),
+    path('', include('user.urls')),
 
 
 ]

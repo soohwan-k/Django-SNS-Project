@@ -1,0 +1,98 @@
+{% extends 'content/base.html' %}
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+
+{% block main_area %}
+  <head>
+
+    <style>
+        .box {
+            width: 150px;
+            height: 150px;
+            border-radius: 70%;
+            overflow: hidden;
+        }
+
+        .profile{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    </style>
+  </head>
+  <body>
+
+
+
+<div style="display: flex; flex-direction: row;text-align: center; justify-content: center;padding-top: 60px; background-color:#FAFAFA">
+    <div style="padding: 20px 60px">
+        <div class="box" style="width: 175px; height: 175px;">
+
+            <img class="profile"
+                 src="{{ user.profile_image }}">
+
+        </div>
+    </div>
+    <div style="text-align: left">
+        <div style="display: flex; flex-direction: row; margin: 20px 0">
+            <div style="font-size: 26px; margin-right: 40px">
+                {{ user.user_id }}
+            </div>
+
+        </div>
+
+
+        <div>
+            <b>{{ user.user_id }}</b>
+        </div>
+    </div>
+</div>
+
+<div style="border-top: solid 2px rgba(50,50,50,0.1); width: 100%">
+
+    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 20px">
+        <div id="button_feed_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">
+            <span class="material-symbols-outlined">grid_on</span>내 게시물</div>
+        <div id="button_feed_like_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">
+            <span class="material-symbols-outlined">favorite_border</span>좋아요</div>
+<!--        <div id="button_feed_bookmark_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">-->
+<!--            <span class="material-symbols-outlined">bookmark_border</span>북마크</div>-->
+    </div>
+
+</div>
+
+<div id="feed_list" style="width: 100%; min-width: 1000px; display: flex; align-items: center;justify-content: center">
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; width: 1000px; justify-content: center">
+        {% for feed in feeds %}
+            <div style="width: 300px;height: 300px; margin: 10px 5px 0px 5px;">
+
+                <div><img style="width: 300px;height: 300px; object-fit: cover"
+                          src="{{ feed.image.url }}">
+                </div>
+                <div></div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+
+
+</html>
+{% endblock %}

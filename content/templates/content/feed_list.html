@@ -7,13 +7,6 @@
 {% block main_area %}
   <head>
 
-
-
-
-
-
-
-
     <style>
         .box {
             width: 150px;
@@ -27,33 +20,7 @@
             height: 100%;
             object-fit: cover;
         }
-        /*.modal_overlay {*/
-        /*    width: 100%;*/
-        /*    height: 100%;*/
-        /*    position: absolute;*/
-        /*    left: 0;*/
-        /*    top: 0;*/
-        /*    display: none;*/
-        /*    flex-direction: column;*/
-        /*    align-items: center;*/
-        /*    justify-content: center;*/
-        /*    background: rgba(0, 0, 0, 0.8);*/
-        /*    backdrop-filter: blur(1.5px);*/
-        /*    -webkit-backdrop-filter: blur(1.5px);*/
-        /*}*/
 
-        /*.modal_window {*/
-        /*    background: white;*/
-        /*    backdrop-filter: blur(13.5px);*/
-        /*    -webkit-backdrop-filter: blur(13.5px);*/
-        /*    border-radius: 10px;*/
-        /*    border: 1px solid rgba(255, 255, 255, 0.18);*/
-        /*    width: 800px;*/
-        /*    height: 600px;*/
-        /*    position: relative;*/
-        /*    padding: 10px;*/
-
-        /*}*/
     </style>
   </head>
   <body>
@@ -76,180 +43,31 @@
                 <img class="profile" src="{{ feed.image.url }}">
             </div>
             <div style="display: flex;flex-display:row;justify-content: space-between;margin:0 10px">
-                <div>
-                    <span class="material-symbols-outlined">favorite</span>
-                    <span class="material-symbols-outlined">mode_comment</span>
-                    <span class="material-symbols-outlined">send</span>
-                </div>
-                <div>
-                    <span class="material-symbols-outlined">bookmark</span>
-                </div>
+<!--                <div>-->
+<!--                    <span class="material-symbols-outlined">favorite</span>-->
+<!--                    <span class="material-symbols-outlined">mode_comment</span>-->
+
+<!--                </div>-->
+
+
             </div>
-            <div style="text-align: left;font-size: 14px;margin:0 10px">
-                abcde <b>외 {{ feed.like }}명</b>이 좋아합니다.
-            </div>
+<!--            <div style="text-align: left;font-size: 14px;margin:0 10px">-->
+<!--                abcde <b>외 {{ feed.like }}명</b>이 좋아합니다.-->
+<!--            </div>-->
             <div style="text-align: left;margin:0 10px;font-size: 16px"><b>{{ feed.user_id }}</b> {{ feed.content }}.</div>
-            <div style="text-align: left;margin:0 10px;font-size: 14px"><b>psoozn</b> 댓글임</div>
+            <div>
+                    <a href="{{ feed.get_absolute_url }}" class="btn btn-outline-dark" style="position: relative; left: -240px">자세히 보기</a>
+                </div>
+<!--            <div style="text-align: left;margin:0 10px;font-size: 14px"><b>psoozn</b> 댓글임</div>-->
 
-
-            <div style="border-top: 1px solid gray;margin-top: 10px"><input type="email" class="form-control" style="box-shadow:none; border: none; outline: none" placeholder="댓글 달기..."></div>
+<!--            <div style="border-top: 1px solid gray;margin-top: 10px"><input type="email" class="form-control" style="box-shadow:none; border: none; outline: none" placeholder="댓글 달기..."></div>-->
         </div>
         {% endfor %}
     </div>
 
 </div>
 
-<!--&lt;!&ndash; 첫번째 모달 &ndash;&gt;-->
-<!--   <div id="first_modal" class="modal_overlay">-->
-<!--        <div class="modal_window">-->
-<!--            <div style="display: flex; flex-direction: row; justify-content: space-between;">-->
-<!--                <div style="width: 40px">-->
 
-<!--                </div>-->
-<!--                <div>-->
-<!--                새 이미지 업로드-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <span class="material-symbols-outlined">close</span>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="img_upload_space" style="background: lightgray; width: 100%; height: 90%">-->
-
-<!--            </div>-->
-<!--        </div>-->
-<!--   </div>-->
-
-<!--&lt;!&ndash; 두번째 모달 &ndash;&gt;-->
-<!--    <div id="second_modal" class="modal_overlay">-->
-<!--        <div class="modal_window">-->
-<!--            <div style="display: flex; flex-direction: row; justify-content: space-between">-->
-<!--                <div style="width: 40px">-->
-
-<!--                </div>-->
-<!--                <div>-->
-<!--                    새 이미지 업로드-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <span class="material-symbols-outlined">close</span>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <div class="img_upload_space" style="background: lightgray; width: 50%; height: 50%; position: absolute; left: 50%; transform: translateX(-50%)"></div>-->
-
-<!--            <div style="border-top: solid 1px gray;position: absolute; bottom: 5px;">-->
-<!--            <div>-->
-<!--                <textarea id="input_feed_content" class="form-control" rows="3" style="width: 600px; height: 100px"></textarea>-->
-<!--            </div>-->
-<!--                <button id="feed_create_button" type="button" class="btn btn-outline-dark" style="margin-top: 10px;">공유하기</button>-->
-
-<!--            </div>-->
-
-<!--        </div>-->
-<!--    </div>-->
-
-
-<!--    &lt;!&ndash; Optional JavaScript; choose one of the two! &ndash;&gt;-->
-<!--    <script>-->
-
-<!--        let files;-->
-
-<!--        $('#nav_bar_add_circle').click(function (){-->
-<!--            $('#first_modal').css({-->
-<!--                display: 'flex'-->
-<!--            });-->
-<!--            $(document.body).css({-->
-<!--                overflowY: 'hidden'-->
-<!--            });-->
-<!--        });-->
-
-<!--        $('#feed_create_button').click(function (){-->
-<!--            alert(files[0].name)-->
-
-<!--            let file = files[0];-->
-<!--            let image=files[0].name;-->
-<!--            let content= $('#input_feed_content').val();-->
-<!--            let user_id="byemrkimseeu";-->
-<!--            let profile_image="https://post-phinf.pstatic.net/MjAxOTA1MTBfMTUw/MDAxNTU3NDUyMTkxNTI3.sc2wnuk1LFj21t7JKj5wi7C0mmtk8vhPIQbkPol_TAUg.KedoYtqN7dRQitSW4AQNcbKrin4fyB8o2A3zZFoe4oYg.JPEG/6.jpg?type=w1200";-->
-
-<!--            let form_data = new FormData();-->
-
-<!--            form_data.append('file', file);-->
-<!--            form_data.append('image', image);-->
-<!--            form_data.append('content', content);-->
-<!--            form_data.append('user_id', user_id);-->
-<!--            form_data.append('profile_image', profile_image);-->
-
-<!--            $.ajax({-->
-<!--                url: "content/feed/",-->
-<!--                data: form_data,-->
-<!--                method: "POST",-->
-<!--                processData: false,-->
-<!--                contentType: false,-->
-<!--                success: function (data){-->
-<!--                    console.log("성공");-->
-<!--                },-->
-<!--                error: function (request, status, error){-->
-<!--                    console.log("에러");-->
-<!--                },-->
-<!--                complete: function(){-->
-<!--                    console.log("완료");-->
-<!--                }-->
-<!--            });-->
-
-<!--        });-->
-
-<!--        $('.img_upload_space')-->
-<!--            .on("dragover", dragOver)-->
-<!--            .on("dragleave", dragOver)-->
-<!--            .on("drop", uploadFiles);-->
-
-<!--        function dragOver(e){-->
-<!--            e.stopPropagation();-->
-<!--            e.preventDefault();-->
-<!--            if (e.type == "dragover") {-->
-<!--                $(e.target).css({-->
-<!--                    "background-color": "black",-->
-<!--                    "outline-offset": "-20px"-->
-<!--                });-->
-<!--            } else {-->
-<!--                $(e.target).css({-->
-<!--                    "background-color": "orange",-->
-<!--                    "outline-offset": "-10px"-->
-<!--                });-->
-<!--            }-->
-<!--        }-->
-
-<!--        function uploadFiles(e){-->
-<!--            e.stopPropagation();-->
-<!--            e.preventDefault();-->
-
-<!--            e.dataTransfer = e.originalEvent.dataTransfer; //2-->
-<!--            files = e.target.files || e.dataTransfer.files;-->
-
-<!--            if (files.length > 1) {-->
-<!--                alert('하나만 올려라.');-->
-<!--                return;-->
-<!--            }-->
-
-<!--            if (files[0].type.match(/image.*/)) {-->
-<!--                $('#first_modal').css({-->
-<!--                    display:'none'-->
-<!--                });-->
-<!--                $('#second_modal').css({-->
-<!--                    display:'flex'-->
-<!--                });-->
-<!--                $('.img_upload_space').css({-->
-<!--                    "background-image": "url(" + window.URL.createObjectURL(files[0]) + ")",-->
-<!--                    "outline": "none",-->
-<!--                    "background-size": "100% 100%",-->
-<!--                });-->
-<!--            }else{-->
-<!--                alert('이미지가 아닙니다.');-->
-<!--                return;-->
-<!--            }-->
-
-<!--        }-->
-<!--    </script>-->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -1,20 +1,36 @@
-import os
-from uuid import uuid4
-
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 from rest_framework.response import Response
+
 from rest_framework.views import APIView
-from .models import Feed
+
+from user.models import User
+from .forms import CommentForm
+from .models import Feed, Comment
 from DjangoSNSProject.settings import MEDIA_ROOT
 
 
 class FeedList(ListView):
     model = Feed
     ordering = '-pk'
+
+
+class FeedDetail(DetailView):
+    model = Feed
+
+    def get_context_data(self, **kwargs):
+        context = super(FeedDetail, self).get_context_data()
+        context['comment_form'] = CommentForm
+        return context
+
+
+# class ProfileList(ListView):
+#     model = Feed
+#     ordering = '-pk'
 
 
 class FeedCreate(LoginRequiredMixin, CreateView):
@@ -32,27 +48,29 @@ class FeedCreate(LoginRequiredMixin, CreateView):
             return redirect('/main/')
 
 
-# class UploadFeed(APIView):
-#     def post(self, request):
-#
-#         file = request.data.get('file')
-#         image = request.data.get('image')
-#
-#         print(file)
-#         print(image)
-#         # file = request.FILES['file']
-#         # uuid_name = uuid4().hex
-#         # save_path = os.path.join(MEDIA_ROOT, uuid_name)
-#         #
-#         # with open(save_path, 'wb+') as destination:
-#         #     for chunk in file.chunks():
-#         #         destination.write(chunk)
-#         #
-#         # image = uuid_name
-#         # content = request.data.get('content')
-#         # user_id = request.data.get('user_id')
-#         # profile_image = request.data.get('profile_image')
-#         #
-#         # Feed.objects.create(image=image, content=content, user_id=user_id, profile_image=profile_image, like_count=0)
-#
-#         return Response(status=200)
+class Profile(APIView):
+    def get(self, request):
+        user = request.user
+        feeds = Feed.objects.filter(user_id=user)
+
+        context = {
+            'user': user,
+            'feeds': feeds,
+        }
+        return render(request, 'content/profile.html', context)
+
+
+def new_comment(request, pk):
+        feed = get_object_or_404(Feed, pk=pk)
+
+        if request.method == 'POST':
+            comment_form = CommentForm(request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.feed = feed
+                comment.user_id = request.user
+                comment.save()
+                return redirect(comment.get_absolute_url())
+        else:
+            return redirect(feed.get_absolute_url())
+
