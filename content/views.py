@@ -19,13 +19,14 @@ class FeedList(ListView):
 
 class FeedCreate(LoginRequiredMixin, CreateView):
     model = Feed
-    fields = ['profile_image','content', 'image']
+    fields = ['content', 'image']
 
     def form_valid(self, form):
         current_user = self.request.user
         if current_user.is_authenticated:
             form.instance.user_id = current_user
             form.instance.like = 0
+            form.instance.profile_image = self.request.user.profile_image
             return super(FeedCreate, self).form_valid(form)
         else:
             return redirect('/main/')
