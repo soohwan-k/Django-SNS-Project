@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'user',
     'DjangoSNSProject',
     'crispy_forms',
+    'likeapp'
 ]
 
 MIDDLEWARE = [

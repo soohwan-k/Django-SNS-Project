@@ -39,14 +39,14 @@
     <div style="text-align: left">
         <div style="display: flex; flex-direction: row; margin: 20px 0">
             <div style="font-size: 26px; margin-right: 40px">
-                {{ user.user_id }}
+                
             </div>
 
         </div>
 
 
         <div>
-            <b>{{ user.user_id }}</b>
+            <b>{{ user.email }}</b>
         </div>
     </div>
 </div>
@@ -54,12 +54,13 @@
 <div style="border-top: solid 2px rgba(50,50,50,0.1); width: 100%">
 
     <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin: 20px">
+        <span href = "/main/profile/">
         <div id="button_feed_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">
             <span class="material-symbols-outlined">grid_on</span>내 게시물</div>
+        </span>
         <div id="button_feed_like_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">
-            <span class="material-symbols-outlined">favorite_border</span>좋아요</div>
-<!--        <div id="button_feed_bookmark_list" style="cursor: pointer;margin: 0 30px;display: flex; flex-direction: row;align-items: center">-->
-<!--            <span class="material-symbols-outlined">bookmark_border</span>북마크</div>-->
+            <span class="material-symbols-outlined">favorite_border</span>저장</div>
+
     </div>
 
 </div>
@@ -71,8 +72,12 @@
 
                 <div><img style="width: 300px;height: 300px; object-fit: cover"
                           src="{{ feed.image.url }}">
+
                 </div>
-                <div></div>
+                <div>
+                    <a href="{{ feed.get_absolute_url }}" class="btn btn-outline-dark">자세히 보기</a>
+                </div>
+
             </div>
         {% endfor %}
     </div>

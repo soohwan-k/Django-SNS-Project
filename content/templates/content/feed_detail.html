@@ -43,17 +43,21 @@
                 <img class="profile" src="{{ feed.image.url }}">
             </div>
             <div style="display: flex;flex-display:row;justify-content: space-between;margin:0 10px">
-                <!--                <div>-->
-                <!--                    <span class="material-symbols-outlined">favorite</span>-->
-                <!--                    <span class="material-symbols-outlined">mode_comment</span>-->
 
-                <!--                </div>-->
+                                <div>
+                                    <a style="text-decoration: none" href="{% url 'likeapp:feed_like' pk=feed.pk %}">
+                                        <i style="vertical-align: middle; color: #f77" class="material-symbols-outlined">favorite</i>
+                                    </a>
+                                        <span>
+                                        {{ feed.like }}
+                                        </span>
+
+                                </div>
+
 
 
             </div>
-            <!--            <div style="text-align: left;font-size: 14px;margin:0 10px">-->
-            <!--                abcde <b>외 {{ feed.like }}명</b>이 좋아합니다.-->
-            <!--            </div>-->
+
             <div style="text-align: left;margin:0 10px;font-size: 16px"><b>{{ feed.user_id }}</b> {{ feed.content }}.</div>
                 <div>
                     <hr/>
@@ -66,7 +70,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <hr/>
+
             <!--            <div style="text-align: left;margin:0 10px;font-size: 14px"><b>psoozn</b> 댓글임</div>-->
 
             <!--            <div style="border-top: 1px solid gray;margin-top: 10px"><input type="email" class="form-control" style="box-shadow:none; border: none; outline: none" placeholder="댓글 달기..."></div>-->

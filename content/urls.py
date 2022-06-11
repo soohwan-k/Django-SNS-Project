@@ -18,10 +18,15 @@ from django.urls import path
 
 from content import views
 from .views import Profile
+
+app_name = 'content'
+
 urlpatterns = [
+    #path('<int:pk>/likes/', views.likes, name='likes'),
     path('<int:pk>/new_comment/', views.new_comment),
-    path('<int:pk>/',views.FeedDetail.as_view()),
+    path('<int:pk>/',views.FeedDetail.as_view(), name='feed_detail'),
     path('', views.FeedList.as_view()),
     path('create_feed/', views.FeedCreate.as_view()),
     path('profile/', Profile.as_view()),
+
 ]
