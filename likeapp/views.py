@@ -15,18 +15,20 @@ class LikeFeedView(RedirectView):
         return reverse('content:feed_detail', kwargs={'pk': kwargs['pk']})
 
     def get(self, *args, **kwargs):
-        users = self.request.user
+        user = self.request.user
         feed = get_object_or_404(Feed, pk=kwargs['pk'])
 
-        if LikeRecord.objects.filter(user=users, feed=feed).exists():
+        if LikeRecord.objects.filter(user=user, feed=feed).exists():
             return HttpResponseRedirect(reverse('content:feed_detail', kwargs={'pk': kwargs['pk']}))
         else:
-            LikeRecord(user=users, feed=feed).save()
+            LikeRecord(user=user, feed=feed).save()
 
         feed.like += 1
         feed.save()
 
         return super(LikeFeedView, self).get(self.request, *args, **kwargs)
+
+
 
 
 

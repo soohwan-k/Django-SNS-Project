@@ -10,16 +10,15 @@ class Feed(models.Model):
     image = models.ImageField(upload_to='content/images/%Y/%m/%d/')
     profile_image = models.TextField()
     user_id = models.CharField(max_length=30)
-    
-    like = models.IntegerField(default=0)
 
+    like = models.IntegerField(default=0)
+    favorite = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='favorite_feed', blank=True)
 
     def __str__(self):
         return f'[{self.pk}] {self.content}'
 
     def get_absolute_url(self):
         return f'/main/{self.pk}/'
-
 
 
 class Comment(models.Model):

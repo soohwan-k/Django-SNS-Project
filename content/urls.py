@@ -17,7 +17,7 @@ Including another URLconf
 from django.urls import path
 
 from content import views
-from .views import Profile
+from .views import Profile, FeedFavorite, FeedFavoriteList
 
 app_name = 'content'
 
@@ -28,5 +28,6 @@ urlpatterns = [
     path('', views.FeedList.as_view()),
     path('create_feed/', views.FeedCreate.as_view()),
     path('profile/', Profile.as_view()),
-
+    path('favorite/<int:feed_id>/', FeedFavorite.as_view(), name='favorite'),
+    path('favorite/', FeedFavoriteList.as_view(), name='favorite_list')
 ]

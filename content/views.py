@@ -1,19 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.exceptions import PermissionDenied
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
+from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, CreateView, DetailView
-from rest_framework.response import Response
 
 from rest_framework.views import APIView
 
-from user.models import User
+
 from .forms import CommentForm
 from .models import Feed, Comment
-from DjangoSNSProject.settings import MEDIA_ROOT
+
 
 
 class FeedList(ListView):
@@ -30,9 +30,7 @@ class FeedDetail(DetailView):
         return context
 
 
-# class ProfileList(ListView):
-#     model = Feed
-#     ordering = '-pk'
+
 
 
 class FeedCreate(LoginRequiredMixin, CreateView):
@@ -76,3 +74,30 @@ def new_comment(request, pk):
         else:
             return redirect(feed.get_absolute_url())
 
+
+
+class FeedFavorite(View):
+
+
+    def get(self, request, *args, **kwargs):
+        if 'feed_id' in kwargs:
+            feed_id = kwargs['feed_id']
+            feed= Feed.objects.get(pk=feed_id)
+            user = request.user
+            if user in feed.favorite.all():
+                feed.favorite.remove(user)
+            else:
+                feed.favorite.add(user)
+        return HttpResponseRedirect('/main/favorite/')
+
+class FeedFavoriteList(ListView):
+    model = Feed
+    template_name = 'content/favorite_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        return super(FeedFavoriteList, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = user.favorite_feed.all()
+        return queryset

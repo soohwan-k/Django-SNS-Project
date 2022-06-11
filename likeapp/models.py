@@ -6,10 +6,10 @@ from content.models import Feed
 
 
 class LikeRecord(models.Model):
-    users = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='like_record')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='like_record')
     feed = models.ForeignKey(Feed, on_delete=models.CASCADE, related_name='like_record')
 
     class Meta:
-        unique_together = ('users', 'feed')
+        unique_together = ('user', 'feed')
 
 
