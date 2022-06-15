@@ -8,3 +8,10 @@ class Sub(APIView):
 
     def post(self, request):
         return render(request, "DjangoSNSProject/main.html")
+
+
+def index(request):
+    return render(
+        request,
+        'DjangoSNSProject/main.html',
+    )

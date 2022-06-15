@@ -17,13 +17,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from DjangoSNSProject import settings
-
+from DjangoSNSProject import settings, views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('main/', include('content.urls')),
-    path('', include('user.urls')),
+    path('', views.index),
     path('likes/', include('likeapp.urls')),
 
 
