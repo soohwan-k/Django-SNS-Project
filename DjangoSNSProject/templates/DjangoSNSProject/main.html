@@ -11,8 +11,11 @@
     <title>SNS</title>
   </head>
   <body>
+  {% load socialaccount %}
   <div style="position: absolute;background: linear-gradient(to right, #A7A3FF,#FFA7A3, #671cc4, #5673bd); -webkit-background-clip: text; -webkit-text-fill-color: transparent; left: 40%; top: 40%">
-    <a href="/main/" style="font-size: 45px">SNS 시작하기</a>
+<!--    <a href="/main/" style="font-size: 45px">SNS 시작하기</a>-->
+    <a type="button" class="btn btn-outline-dark btn-block btn-sm" href="{% provider_login_url 'google' %}"><i class="fab fa-google">Log in with Google</i></a>
+    <a type="button" class="btn btn-outline-dark btn-block btn-sm" href="/accounts/login"><i class="fab fa-envelope">Log in with Email</i></a>
   </div>
     <!-- Optional JavaScript; choose one of the two! -->
 

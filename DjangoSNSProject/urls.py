@@ -24,6 +24,7 @@ urlpatterns = [
     path('main/', include('content.urls')),
     path('', views.index),
     path('likes/', include('likeapp.urls')),
+    path('accounts/', include('allauth.urls')),
 
 
 ]
